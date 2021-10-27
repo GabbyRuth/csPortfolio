@@ -13,7 +13,6 @@
   <script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
 
 
-
 </head>
 
 <body>
@@ -85,91 +84,135 @@
             <a href="../pages/contact.html">Contact</a>
             </li>
       </ul>
-<div class="flexbox-container">
-        <div class="flexbox-item  item-1">
-            <script type="text/p5" data-height="450" data-autoplay data-preview-width="400">
+     
 
-var L;
-var LL;
-var R;
-var RR;
+    
+    <div class="flexbox-container">
+        <div class="flexbox-item  item-1">
+            <script type="text/p5" data-height="500" data-autoplay data-preview-width="550">
+            var colors = ["#F2AA07", "#FC9908", "#E67213", "#FC5908", "#CC3300", "#CC7205"];
+var speed = 0.5;
+
 function setup() {
-  createCanvas(400, 400);
+  
+  createCanvas(500,600);
   angleMode(DEGREES);
+  leafOne = new Leaf(200,300);
+  leafTwo = new Leaf(300,400);
+  leafThree = new Leaf(350,350);
+  leafFour = new Leaf(250,200);
+  leafFive = new Leaf(150,150);
+  
 }
 
 function draw() {
-  L = map(mouseX, 0, 400, 150,160);
-  LL = map(mouseY, 0, 400, 165,175);
-  R = map(mouseX, 0, 400, 230,240);
-  RR = map(mouseY, 0, 400, 165, 175);
-  background(173, 190, 140);
-  face();
+  background(177,209,230);
+  stump();
+  treeTop();
+  
+ 
+  leafOne.display();
+  leafOne.fall();
+  leafTwo.display();
+  leafTwo.fall();
+  leafThree.display();
+  leafThree.fall();
+  leafFour.display();
+  leafFour.fall();
+  leafFive.display();
+  leafFive.fall();
+ 
+  /*  for (let i = 0; i < 70; i++){
+      test[i].display();
+}*/
+    
   
 }
 
-function face(x,y){
-  translate(x+100,y-80);
-  //peach
-  fill(255,216,177);
-  noStroke();
-  //face
-  ellipse(200,200,250,250);
-  //neck
-  arc(200,300,200,200,30,150);
-  
-  //eyebrows
-  noFill();
-  stroke(101,67,33);
-  strokeWeight(5);
-  arc(160,150,40,10,180, 360);
-  arc(240,150,40,10,180,360);
-  
-  //hair
-  strokeWeight(10);
-  arc(192,200,230,250,-220,40);
-  arc(212,200,230,250,-220,40);
-  
-  //eyes
-  fill(255,255,255);
-  stroke(255,255,255);
-  ellipse(160,170,30,20);
-  ellipse(240,170,30,20);
-  stroke(0,0,255);
-  ellipse(L,LL,10,5);
-  ellipse(R,RR,10,5);
-  
-  //nose
-  noFill();
-  strokeWeight(3);
-  stroke(200,173,123);
-  arc(200,220,30,20,-65,100);
-  
-  //mouth
-  stroke(217,154,108);
-  arc(200,270,60,20,360,180);
-  
-  if (mouseIsPressed){
-    stroke(255,216,177);
-    arc(200,270,60,20,360,180);
-    stroke(217,154,108);
-    line(170,280,230,280);
-  }
+function treeTop(){
+  stroke(colors[3]);
+  strokeWeight(350);
+  point(250,250);
 }
+
+function stump() {
+  stroke(89,70,58);
+  fill(89,70,58);
+  rect(220,270,75,500);
+  noFill();
+  stroke(89,70,58);
+  strokeWeight(30);
+  arc(180,290,100,700,270*(180/PI),-300*(180/PI));
+  arc(330,290,100,700,-270,170);
+  
+}
+
+
+
+class Leaf {
+  constructor(x,y){
+    this.x = x;
+    this.y = y;
+    
+    //stroke(random(colors));
+    
+  }
+    
+    display(){
+    strokeWeight(10);
+    //stroke(random(colors));
+    stroke(colors[3]);
+    //stroke(colors[c]);
+    triangle(this.x,this.y,this.x+4,this.y,this.x+2,this.y+4);
+    triangle(this.x+14,this.y+10,this.x+16,this.y+8,this.x+18,this.y+10);
+    triangle(this.x-14,this.y+10,this.x-12,this.y+8,this.x-10,this.y+10);
+    strokeWeight(3);
+    line(this.x+2,this.y+16,this.x+2,this.y+30);
+  }
+
+  
+  fall(){
+  this.y = this.y+speed;
+  if (this.y > 650){
+    this.y = 300;
+  }
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
-</div>
+            </div>
             <div class="flexbox-item item-2">
 
-<h1 class = "text"> This is a very accurate recreation of my friend, Seth. As you move the mouse around his eyes will follow. Clicking the mouse will change his expression. </h1>
 
-<!--<p class = "text"> My biggest struggle while writing this program was making the arcs for the hair symmetrical.</p>-->
+ <h1 class = "head" ></h1>
+<li class = "text"> Sit back and relax and watch the leaves fall :)
+  
+  </li>
 
-</div>
+            </div>
+
+
 
 
   </body>
   
 </html>
-     
