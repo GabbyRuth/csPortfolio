@@ -8,6 +8,7 @@ h1 {
       width: 100%;
 		}
 
+
     #banner {
     display: flex;
     width: 100%;
@@ -207,8 +208,9 @@ h1 {
 canvas {
     border: thin solid #FF2424;
     position: relative;
-    left: 50%;
-    top: 50%;
+    left: 100%;
+    top: 100%;
+  flex: grow;
     transform: translate(-50%, 0%);
-    /*what is this*/
+   
 }

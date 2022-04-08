@@ -181,9 +181,13 @@ h1 {
     font-size: 20px;
     color: #014421;
     width: 60%;
-    padding-top: 20px;
+    padding-top: 2%;
+  padding-bottom: 7%;
     padding-right: 7%;
-    padding-left: 0%;
+    padding-left: 6%;
+    /*border-radius: 50%;
+    width: 100%;*/
+  margin-bottom: 30%;
 
     
     
@@ -198,6 +202,14 @@ h1 {
     margin-right: 5px;
     
 }
+
+.item-3{
+  padding-top: 50%;
+    padding-right: 7%;
+    padding-left: 6%;
+  width: 60%;
+  
+}
 /*js file formatting*/
 canvas {
     border: thin solid #FF2424;
@@ -205,5 +217,5 @@ canvas {
     left: 50%;
     top: 50%;
     transform: translate(-50%, 0%);
-    /*what is this*/
+    
 }
