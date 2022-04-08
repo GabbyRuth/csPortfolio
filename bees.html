@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<link rel="stylesheet" type="text/css" href="../css/projects.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+  <script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+
+
+</head>
+
+<body>
+
+
+	<img id = "banner" src = "../images/newbanner.jpg">
+      
+  
+   
+     
+    <nav class="menu">
+
+
+
+      <nav id="main-nav">
+      <ul>
+          <li>
+              <a href="../pages/aboutMe.html" class: "box">About me</a>
+          </li>
+          <li>
+              <a href="#">Projects
+                  <span class="arrow">&#x25BC;</span>
+              </a>
+              <ul class="submenu">
+                  <li>
+                      <a href="#">10th Grade
+                          <span class="arrow">&#x25B6;</span>
+                      </a>
+                      <ul class="submenu-2">
+                          <li>
+                              <a href="../projects/snowflakeCatcher.html">Snowflake Catcher</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                  <a href="#">11th Grade
+                    <span class = "arrow">&#x25B6;</span>
+                  </a>
+                  <ul class = "submenu-2">
+                    <li>
+                      <a href="../projects/seth.html">Seth</a>
+                    </li>
+                    <li>
+                      <a href="../projects/fishing.html">Fishing</a>
+                      </li>
+                       <li>
+                        <a href="../projects/holidayCard.html">Holiday Card</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li>
+                      <a href="#">12th Grade   
+                        <span class = "arrow">&#x25B6;</span>
+                        </a>
+                           <ul class = "submenu-2">
+                    <li>
+                      <a href="../projects/fallScene.html">Fall Scene</a>
+                    </li>
+                             <li>
+                      <a href="../projects/dice.html">Dice</a>
+                    </li>
+                          <li>
+                      <a href="../projects/bees.html">Bees</a>
+                    </li>
+                          <li>
+                      <a href="../projects/skiRacing.html">Ski Racing</a>
+                    </li>
+                          <li>
+                      <a href="../projects/clock.html">Clock</a>
+                    </li>
+                    </ul> 
+                      </li>
+              </ul>
+          </li>
+
+                    <li>
+                        <a href="../pages/deepThoughts.html">Deep Thoughts</a>
+          </li>
+
+          <li>
+            <a href="../pages/contact.html">Contact</a>
+            </li>
+      </ul>
+     
+
+    
+    <div class="flexbox-container">
+        <div class="flexbox-item  item-1">
+            <script type="text/p5" data-height="500" data-autoplay data-preview-width="550">
+var x;
+var y;
+var beeArr;
+var beeArr2;
+var page = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  beeArr = new Array(100);
+  for (var i = 0; i < beeArr.length; i++){
+    beeArr[i] = new Bee(random(10,350), random(10,400));
+  }
+  beeArr2 = new Array(100);
+  for (var j = 0; j < beeArr2.length; j++){
+    beeArr2[j] = new Bee(random(10,350), random(10,400));
+  }
+  
+}
+
+function draw() {
+  if (page == 0){
+    scene1();
+  
+  } else if(page == 1){
+    scene2();
+  }
+
+}
+
+
+function mousePressed(){
+  page++;
+  if (page > 1){
+    page = 0;
+  } 
+
+}
+
+function scene1(){
+  background(173,216,230);
+  strokeWeight(1);
+  hive1();
+    for (var i = 0; i < beeArr.length; i++){
+    beeArr[i].draw();
+    beeArr[i].move();
+  }
+}
+  
+  
+function hive1(){
+  fill(249,166,2);
+  stroke(214,139,0);
+  ellipse(200,230,120,40);
+  ellipse(200,200,200,60);
+  ellipse(200,170,230,60);
+  ellipse(200,130,270,60);
+  ellipse(200,90,230,60);
+  ellipse(200,50,200,60);
+  ellipse(200,15,120,40);
+  
+}
+  
+  
+  function scene2(){
+    background(173,216,230);
+    fill(101,67,33);
+    noStroke();
+    rect(350,0,50,400);
+    noFill();
+    strokeWeight(40);
+    stroke(101,67,33);
+    line(400,100,150,50);
+    strokeWeight(1);
+    fill(249,166,2);
+    stroke(214,139,0);
+    ellipse(140,111,25,10);
+    ellipse(140,103,35,15);
+    ellipse(140,95,45,20);
+    ellipse(140,85,50,25);
+    ellipse(140,80,45,20);
+    ellipse(140,75,35,15);
+    ellipse(140,70,25,10);
+    for (var j = 0; j < beeArr2.length; j++){
+    beeArr2[j].draw2();
+    beeArr2[j].move2();
+  }
+    
+    
+  }
+ 
+
+class Bee {
+  constructor(x,y){
+    this.x = x;
+    this.y = y; 
+  }
+  draw (){
+    fill(255,255,0);
+    ellipse(this.x, this.y, 5, 5);
+    fill(0,0,0);
+    ellipse(this.x+2, this.y-5, 5,5);
+    ellipse(this.x-2, this.y-5, 5,5);
+    
+  }
+  
+  move(){
+    this.x = this.x + random(-7,7);
+    this.y = this.y + random(-7,7);
+    if ((this.x >= 400) || (this.x<= 0)) {
+      this.x = 200;
+      this.y = 150;
+    }
+    if ((this.y >= 400) || (this.y <=0)){
+      this.x = 200;
+      this.y = 150;
+    }
+  }
+  
+  move2(){
+     this.x = this.x + random(-3,3);
+    this.y = this.y + random(-3,3);
+    if ((this.x >= 400) || (this.x<= 0)) {
+      this.x = 150;
+      this.y = 100;
+    }
+    if ((this.y >= 400) || (this.y <=0)){
+      this.x = 150;
+      this.y = 100;
+    }
+  }
+  
+    draw2() {
+    fill(255,255,0);
+    ellipse(this.x, this.y, 3, 3);
+    fill(0,0,0);
+    ellipse(this.x+2, this.y-2, 2,2);
+    ellipse(this.x-2, this.y-2, 2,2);
+    
+  }
+  
+  
+}
+
+
+
+</script>
+
+            </div>
+            <div class="flexbox-item item-2">
+
+
+ <h1 class = "head" ></h1>
+<li class = "text"> This was one of my favorite projects. The objective was to use a radom walk. I finished early and decided to make another viewpoint. Click to zoom out. 
+  
+  </li>
+
+            </div>
+
+
+
+
+  </body>
+  
+</html>

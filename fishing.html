@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<link rel="stylesheet" type="text/css" href="../css/projects.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+  <script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+
+
+</head>
+
+<body>
+
+
+	<img id = "banner" src = "../images/newbanner.jpg">
+      
+  
+   
+     
+    <nav class="menu">
+
+
+
+      <nav id="main-nav">
+      <ul>
+          <li>
+              <a href="../pages/aboutMe.html" class: "box">About me</a>
+          </li>
+          <li>
+              <a href="#">Projects
+                  <span class="arrow">&#x25BC;</span>
+              </a>
+              <ul class="submenu">
+                  <li>
+                      <a href="#">10th Grade
+                          <span class="arrow">&#x25B6;</span>
+                      </a>
+                      <ul class="submenu-2">
+                          <li>
+                              <a href="../projects/snowflakeCatcher.html">Snowflake Catcher</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                  <a href="#">11th Grade
+                    <span class = "arrow">&#x25B6;</span>
+                  </a>
+                  <ul class = "submenu-2">
+                    <li>
+                      <a href="../projects/seth.html">Seth</a>
+                    </li>
+                    <li>
+                      <a href="../projects/fishing.html">Fishing</a>
+                      </li>
+                       <li>
+                        <a href="../projects/holidayCard.html">Holiday Card</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li>
+                      <a href="#">12th Grade   
+                        <span class = "arrow">&#x25B6;</span>
+                        </a>
+                           <ul class = "submenu-2">
+                    <li>
+                      <a href="../projects/fallScene.html">Fall Scene</a>
+                    </li>
+                             <li>
+                      <a href="../projects/dice.html">Dice</a>
+                    </li>
+                          <li>
+                      <a href="../projects/bees.html">Bees</a>
+                    </li>
+                          <li>
+                      <a href="../projects/skiRacing.html">Ski Racing</a>
+                    </li>
+                          <li>
+                      <a href="../projects/clock.html">Clock</a>
+                    </li>
+                    </ul> 
+                      </li>
+              </ul>
+          </li>
+
+                    <li>
+                        <a href="../pages/deepThoughts.html">Deep Thoughts</a>
+          </li>
+
+          <li>
+            <a href="../pages/contact.html">Contact</a>
+            </li>
+      </ul>
+     
+
+    
+    <div class="flexbox-container">
+        <div class="flexbox-item  item-1">
+            <script type="text/p5" data-height="500" data-autoplay data-preview-width="550">
+       var a=0;
+var b=0;
+var aa = 0; 
+var bb = 0;
+var speed = 0.5;
+var level = 1;
+var Kcaught = false;
+var Bcaught = false;
+var Rcaught = false;
+var Ccaught = false;
+var gameOver = 0;
+var kx = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  angleMode(DEGREES)
+  
+  kevin =new Fish(-10, 300, 30,20, 255, 127, 80); //orange
+  becca = new Fish(40,200,30,20, 255, 226, 5); //yellow
+  //seth is uncatchable 
+  seth = new Fish(-200, 350, 30, 20, 128, 0, 0); //red
+  roberto = new Fish(300,250,30,20,178,252,136); //green
+  catrina = new Fish(-230,210,30,20,200,162,200); //purple
+  
+}
+
+function draw() {
+  background(207,238,250);
+  scene();
+  rod();
+  //fish
+  kevin.display()
+  kevin.move();
+  becca.display();
+  becca.move();
+  seth.display();
+  seth.move();
+  roberto.display();
+  roberto.move();
+  catrina.display();
+  catrina.move();
+  //the originals 
+  //a = map(mouseX,0,400,380,20);
+  //b = map(mouseY,0,400,20,100);
+  a = map(mouseX,0,400,20,380);
+  b = map(mouseY,0,400,20,130);
+  var aa = int (a);
+  var bb = int (b + 150);
+  //console.log("this is a: " + aa);
+  //console.log("this is b: " + bb);
+  textSize(20);
+  fill(0,0,0);
+  text("Level: " + level, 5, 20);
+  
+  if (level > 1){
+    if (kx == 0){
+      //console.log("this is kx: " + kx);
+      if (gameOver == 0){
+        speed = 0;
+      } else {
+        gameOver = 0;
+      }
+    }
+  }
+  
+  if (speed == 0){
+    textSize(16);
+    text("Oops! All the fish have passed & you didn't catch one", 12, 60);
+    text("You made it to level: " + level, 95,80);
+    if (mouseIsPressed){
+      restart();
+    }
+  }
+  
+  function restart(){
+    speed = 0.5;
+    level = 1;
+  }
+  
+
+//Kevin
+  k = kevin.x;
+  kk = kevin.y;
+  kx = int (k);
+  var ky = int (kk);
+  
+  if (dist(aa,bb,kx,ky) < 5){
+    if (Kcaught == false){
+      level++;
+      speed = speed + 0.5;
+      Kcaught = true;
+      Bcaught = false;
+      Rcaught = false;
+      Ccaught = false;
+      gameOver++;
+    }
+  } 
+ 
+//Becca
+  be = becca.x;
+  bebe = becca.y;
+  var bex = int (be);
+  var bey = int (bebe);
+  if (dist(aa,bb,bex,bey) < 5){
+    if (Bcaught == false){
+      level++;
+      speed = speed + 0.5;
+      Bcaught = true;
+      Kcaught = false;
+      Rcaught = false;
+      Ccaught = false;
+      gameOver++;
+    }
+  } 
+  
+  
+//Roberto
+  r = roberto.x;
+  rr = roberto.y;
+  var rx = int (r);
+   //console.log("this is fx: " + fx);
+  var ry = int(rr);
+  //console.log("this is fy:" + fy);
+    
+   if (dist(aa, bb, rx, ry) < 5){
+    //console.log(bb);
+    if(Rcaught == false){
+      //console.log("caught");
+      level++;
+      speed = speed + 0.5;
+      Rcaught = true;
+      Kcaught = false;
+      Bcaught = false;
+      Ccaught = false; 
+      gameOver++;
+    }
+  } 
+  
+//Catrina
+  c = catrina.x;
+  cc = catrina.y;
+  var cx = int (c);
+  var cy = int (cc);
+  if (dist(aa,bb,cx,cy) < 5){
+    if (Ccaught == false){
+      level++;
+      speed = speed + 0.5;
+      Ccaught = true;
+      Rcaught = false;
+      Bcaught = false;
+      Kcaught = false;
+      gameOver++;
+    }
+  } 
+}
+
+function scene(){
+  noStroke();
+  fill(0,105,148);
+  rect(0,150,400,400);
+  //waves
+  noFill();
+  stroke(0,105,148);
+  strokeWeight(10);
+  arc(300,100,90,100,0,180);
+  arc(30,100,90,100,0,180);
+  arc(390,100,90,100,0,180);
+  arc(120,100,90,100,0,180);
+  arc(210,100,90,100,0,180);
+  fill(0,105,148);
+  triangle(50,160,76,110,98,160);
+  triangle(140,160,166,110,188,160);
+  triangle(230,160,256,110,278,160);
+  triangle(320,160,346,110,368,160);
+  line(0,140,10,170);
+}
+
+function rod(){
+  //handle
+  stroke(155,103,60);
+  line(a,b,a-100,b);
+  //line
+  stroke(128,128,128);
+  strokeWeight(3);
+  //line(276,40,280,240);
+  line(a+4,b,a+4,b+150);
+  //hook
+  stroke(0,0,0);
+  //arc(19,170,15,15,-40,-220);
+  arc(a-1,b+150,15,15,-40,-220);
+}
+
+
+class Fish{
+  constructor(x, y, s, ss, r, g, b){
+    this.x = x;
+    this.y = y;
+    this.s = s;
+    this.ss = ss;
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
+  display(){
+    noStroke();
+    fill(this.r, this.g, this.b);
+    ellipse(this.x, this.y, this.s, this.ss);
+    triangle(this.x -20, this.y-10, this.x - 10, this.y, this.x - 20, this.y + 10);
+  }
+  move(){
+    this.x = this.x + speed;
+    if (this.x > 400){
+      this.x = 0;
+    }
+  }
+
+}
+
+
+
+
+
+</script>
+
+            </div>
+            <div class="flexbox-item item-2">
+
+
+ <h1 class = "head" >Directions: </h1>
+<li class = "text"> 
+  <ul> Drag the mouse to move the rod </ul>
+  <ul> You cannot catch the same fish twice in a row </ul>
+  <ul> The red fish is uncatchable </ul>
+  <ul> The speed will increase every time you catch a fish (level up) </ul>
+  <ul> If the yellow fish passes and you don't catch a fish, you lose </ul>
+  </li>
+  <!--<p class = "text"> My biggest struggle while writing this program was figuring out the range the hook should be in compared to the fish, in order for the program to be playable. </p>-->
+            </div>
+
+
+
+
+  </body>
+  
+</html>
