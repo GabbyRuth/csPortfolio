@@ -13,7 +13,6 @@
   <script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
 
 
-
 </head>
 
 <body>
@@ -97,91 +96,173 @@
             <a href="../pages/contact.html">Contact</a>
             </li>
       </ul>
-<div class="flexbox-container">
-        <div class="flexbox-item  item-1">
-            <script type="text/p5" data-height="450" data-autoplay data-preview-width="400">
+     
 
-var L;
-var LL;
-var R;
-var RR;
+    
+    <div class="flexbox-container">
+        <div class="flexbox-item  item-1">
+            <script type="text/p5" data-height="500" data-autoplay data-preview-width="550">
+var x;
+var y;
+var beeArr;
+var beeArr2;
+var page = 0;
+
 function setup() {
   createCanvas(400, 400);
-  angleMode(DEGREES);
+  beeArr = new Array(100);
+  for (var i = 0; i < beeArr.length; i++){
+    beeArr[i] = new Bee(random(10,350), random(10,400));
+  }
+  beeArr2 = new Array(100);
+  for (var j = 0; j < beeArr2.length; j++){
+    beeArr2[j] = new Bee(random(10,350), random(10,400));
+  }
+  
 }
 
 function draw() {
-  L = map(mouseX, 0, 400, 150,160);
-  LL = map(mouseY, 0, 400, 165,175);
-  R = map(mouseX, 0, 400, 230,240);
-  RR = map(mouseY, 0, 400, 165, 175);
-  background(173, 190, 140);
-  face();
+  if (page == 0){
+    scene1();
+  
+  } else if(page == 1){
+    scene2();
+  }
+
+}
+
+
+function mousePressed(){
+  page++;
+  if (page > 1){
+    page = 0;
+  } 
+
+}
+
+function scene1(){
+  background(173,216,230);
+  strokeWeight(1);
+  hive1();
+    for (var i = 0; i < beeArr.length; i++){
+    beeArr[i].draw();
+    beeArr[i].move();
+  }
+}
+  
+  
+function hive1(){
+  fill(249,166,2);
+  stroke(214,139,0);
+  ellipse(200,230,120,40);
+  ellipse(200,200,200,60);
+  ellipse(200,170,230,60);
+  ellipse(200,130,270,60);
+  ellipse(200,90,230,60);
+  ellipse(200,50,200,60);
+  ellipse(200,15,120,40);
+  
+}
+  
+  
+  function scene2(){
+    background(173,216,230);
+    fill(101,67,33);
+    noStroke();
+    rect(350,0,50,400);
+    noFill();
+    strokeWeight(40);
+    stroke(101,67,33);
+    line(400,100,150,50);
+    strokeWeight(1);
+    fill(249,166,2);
+    stroke(214,139,0);
+    ellipse(140,111,25,10);
+    ellipse(140,103,35,15);
+    ellipse(140,95,45,20);
+    ellipse(140,85,50,25);
+    ellipse(140,80,45,20);
+    ellipse(140,75,35,15);
+    ellipse(140,70,25,10);
+    for (var j = 0; j < beeArr2.length; j++){
+    beeArr2[j].draw2();
+    beeArr2[j].move2();
+  }
+    
+    
+  }
+ 
+
+class Bee {
+  constructor(x,y){
+    this.x = x;
+    this.y = y; 
+  }
+  draw (){
+    fill(255,255,0);
+    ellipse(this.x, this.y, 5, 5);
+    fill(0,0,0);
+    ellipse(this.x+2, this.y-5, 5,5);
+    ellipse(this.x-2, this.y-5, 5,5);
+    
+  }
+  
+  move(){
+    this.x = this.x + random(-7,7);
+    this.y = this.y + random(-7,7);
+    if ((this.x >= 400) || (this.x<= 0)) {
+      this.x = 200;
+      this.y = 150;
+    }
+    if ((this.y >= 400) || (this.y <=0)){
+      this.x = 200;
+      this.y = 150;
+    }
+  }
+  
+  move2(){
+     this.x = this.x + random(-3,3);
+    this.y = this.y + random(-3,3);
+    if ((this.x >= 400) || (this.x<= 0)) {
+      this.x = 150;
+      this.y = 100;
+    }
+    if ((this.y >= 400) || (this.y <=0)){
+      this.x = 150;
+      this.y = 100;
+    }
+  }
+  
+    draw2() {
+    fill(255,255,0);
+    ellipse(this.x, this.y, 3, 3);
+    fill(0,0,0);
+    ellipse(this.x+2, this.y-2, 2,2);
+    ellipse(this.x-2, this.y-2, 2,2);
+    
+  }
+  
   
 }
 
-function face(x,y){
-  translate(x+100,y-80);
-  //peach
-  fill(255,216,177);
-  noStroke();
-  //face
-  ellipse(200,200,250,250);
-  //neck
-  arc(200,300,200,200,30,150);
-  
-  //eyebrows
-  noFill();
-  stroke(101,67,33);
-  strokeWeight(5);
-  arc(160,150,40,10,180, 360);
-  arc(240,150,40,10,180,360);
-  
-  //hair
-  strokeWeight(10);
-  arc(192,200,230,250,-220,40);
-  arc(212,200,230,250,-220,40);
-  
-  //eyes
-  fill(255,255,255);
-  stroke(255,255,255);
-  ellipse(160,170,30,20);
-  ellipse(240,170,30,20);
-  stroke(0,0,255);
-  ellipse(L,LL,10,5);
-  ellipse(R,RR,10,5);
-  
-  //nose
-  noFill();
-  strokeWeight(3);
-  stroke(200,173,123);
-  arc(200,220,30,20,-65,100);
-  
-  //mouth
-  stroke(217,154,108);
-  arc(200,270,60,20,360,180);
-  
-  if (mouseIsPressed){
-    stroke(255,216,177);
-    arc(200,270,60,20,360,180);
-    stroke(217,154,108);
-    line(170,280,230,280);
-  }
-}
+
 
 </script>
 
-</div>
+            </div>
             <div class="flexbox-item item-2">
 
-<h1 class = "text"> This is a very accurate recreation of my friend, Seth. As you move the mouse around his eyes will follow. Clicking the mouse will change his expression. </h1>
 
-<!--<p class = "text"> My biggest struggle while writing this program was making the arcs for the hair symmetrical.</p>-->
+ <h1 class = "head" ></h1>
+<li class = "text"> This was one of my favorite projects. The objective was to use a radom walk. I finished early and decided to make another viewpoint. Click to zoom out. 
+  
+  </li>
 
-</div>
+            </div>
+
+
 
 
   </body>
   
 </html>
-     

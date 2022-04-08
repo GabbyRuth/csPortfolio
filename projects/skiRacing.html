@@ -10,8 +10,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-  <script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
-
+  
 
 
 </head>
@@ -97,91 +96,31 @@
             <a href="../pages/contact.html">Contact</a>
             </li>
       </ul>
-<div class="flexbox-container">
+     
+
+    
+    <div class="flexbox-container">
         <div class="flexbox-item  item-1">
-            <script type="text/p5" data-height="450" data-autoplay data-preview-width="400">
+            <iframe src="https://editor.p5js.org/GabbyRuth/full/KwBnbotq-" width= "500" height = "500"></iframe>
 
-var L;
-var LL;
-var R;
-var RR;
-function setup() {
-  createCanvas(400, 400);
-  angleMode(DEGREES);
-}
 
-function draw() {
-  L = map(mouseX, 0, 400, 150,160);
-  LL = map(mouseY, 0, 400, 165,175);
-  R = map(mouseX, 0, 400, 230,240);
-  RR = map(mouseY, 0, 400, 165, 175);
-  background(173, 190, 140);
-  face();
-  
-}
 
-function face(x,y){
-  translate(x+100,y-80);
-  //peach
-  fill(255,216,177);
-  noStroke();
-  //face
-  ellipse(200,200,250,250);
-  //neck
-  arc(200,300,200,200,30,150);
-  
-  //eyebrows
-  noFill();
-  stroke(101,67,33);
-  strokeWeight(5);
-  arc(160,150,40,10,180, 360);
-  arc(240,150,40,10,180,360);
-  
-  //hair
-  strokeWeight(10);
-  arc(192,200,230,250,-220,40);
-  arc(212,200,230,250,-220,40);
-  
-  //eyes
-  fill(255,255,255);
-  stroke(255,255,255);
-  ellipse(160,170,30,20);
-  ellipse(240,170,30,20);
-  stroke(0,0,255);
-  ellipse(L,LL,10,5);
-  ellipse(R,RR,10,5);
-  
-  //nose
-  noFill();
-  strokeWeight(3);
-  stroke(200,173,123);
-  arc(200,220,30,20,-65,100);
-  
-  //mouth
-  stroke(217,154,108);
-  arc(200,270,60,20,360,180);
-  
-  if (mouseIsPressed){
-    stroke(255,216,177);
-    arc(200,270,60,20,360,180);
-    stroke(217,154,108);
-    line(170,280,230,280);
-  }
-}
 
-</script>
 
-</div>
+
+            </div>
             <div class="flexbox-item item-2">
 
-<h1 class = "text"> This is a very accurate recreation of my friend, Seth. As you move the mouse around his eyes will follow. Clicking the mouse will change his expression. </h1>
 
-<!--<p class = "text"> My biggest struggle while writing this program was making the arcs for the hair symmetrical.</p>-->
+ <h1 class = "head" ></h1>
+<li class = "text"> Another one of my favorite projects. The objective for this project was to incorporate 'juice' (sound, colors, etc.). Alpine ski racing is a big part of my life, the goal is to weave between the gates and finish with the fastest time. Click the screen and use the left and right arrows to turn. Turn up your volume!
+  </li>
 
-</div>
+            </div>
+
+
 
 
   </body>
   
 </html>
-     
